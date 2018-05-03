@@ -48,6 +48,7 @@ if IO=='even':
         name.append(name[0])
         bursttime.append(bursttime[0])
         finishtime.append(arrivaltime[0]+quantum)
+        IOtimearr.append(IOtime)
         process=process+1
     else:
         finishtime.append(arrivaltime[0]+bursttime[0])
@@ -61,6 +62,7 @@ if IO=='even':
                 if finishtime[i-1]>=returntime[j]:
                     name.append(name[returnindex[j]])
                     bursttime.append(bursttime[returnindex[j]])
+                    IOtimearr.append(IOtime)
                     count=count-1
                     returntime[j]=[]
                     returnindex[j]=[]
@@ -76,6 +78,7 @@ if IO=='even':
                 bursttime[i] = bursttime[i] - quantum
                 name.append(name[i])
                 bursttime.append(bursttime[i])
+                IOtimearr.append(IOtime)
                 finishtime.append(finishtime[i-1]+quantum)
                 process=process+1
             else:
@@ -90,6 +93,7 @@ if IO=='even':
                 bursttime[i ] = bursttime[i ] - quantum
                 name.append(name[i])
                 bursttime.append(bursttime[i])
+                IOtimearr.append(IOtime)
                 finishtime.append(finishtime[i-1] + quantum)
                 process = process + 1
                 IOtimearr[i]=IOtimearr[i]-quantum
@@ -128,6 +132,7 @@ elif IO=='odd':
         starttime.append(arrivaltime[0])
         bursttime[0] = bursttime[0] - quantum
         name.append(name[0])
+        IOtimearr.append(IOtime)
         bursttime.append(bursttime[0])
         finishtime.append(arrivaltime[0] + quantum)
         IOtimearr[0] = IOtimearr[0] - quantum
@@ -152,6 +157,7 @@ elif IO=='odd':
             for j in range(count1):
                 if finishtime[i-1]>=returntime[j]:
                     name.append(name[returnindex[j]])
+                    IOtimearr.append(IOtime)
                     bursttime.append(bursttime[returnindex[j]])
                     count=count-1
                     returntime[j]=[]
@@ -167,6 +173,7 @@ elif IO=='odd':
                 starttime.append(finishtime[i-1])
                 bursttime[i ] = bursttime[i ] - quantum
                 name.append(name[i])
+                IOtimearr.append(IOtime)
                 bursttime.append(bursttime[i])
                 finishtime.append(finishtime[i-1] + quantum)
                 process = process + 1
@@ -192,6 +199,7 @@ elif IO=='odd':
                 starttime.append(finishtime[i-1])
                 bursttime[i] = bursttime[i] - quantum
                 name.append(name[i])
+                IOtimearr.append(IOtime)
                 bursttime.append(bursttime[i])
                 finishtime.append(finishtime[i-1]+quantum)
                 process=process+1
