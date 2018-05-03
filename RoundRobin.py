@@ -12,6 +12,10 @@ returntime=[]
 returnindex=[]
 count=0
 count1=0
+IOtimearr=[]
+for i in range(process):
+    IOtimearr.append(IOtime)
+
 for i in range(process):
     print("enter the name of " , i+1," process")
     name1=input()
@@ -81,24 +85,24 @@ if IO=='even':
                       finishtime[i])
 
         else:
-            if IOtime>quantum and bursttime[i]>quantum:
+            if IOtimearr[i]>quantum and bursttime[i]>quantum:
                 starttime.append(finishtime[i-1])
                 bursttime[i ] = bursttime[i ] - quantum
                 name.append(name[i])
                 bursttime.append(bursttime[i])
                 finishtime.append(finishtime[i-1] + quantum)
                 process = process + 1
-                IOtime=IOtime-quantum
+                IOtimearr[i]=IOtimearr[i]-quantum
 
-            elif IOtime>bursttime[i] and bursttime[i]<quantum:
+            elif IOtimearr[i]>bursttime[i] and bursttime[i]<quantum:
                 starttime.append(finishtime[i-1])
                 finishtime.append(finishtime[i-1] + bursttime[i])
                 print("The process ", name[i], " started at ", starttime[i], " and ended at ",
                       finishtime[i])
 
-            elif IOtime<bursttime[i] and IOtime<quantum:
+            elif IOtimearr[i]<bursttime[i] and IOtimearr[i]<quantum:
                 starttime.append(finishtime[i-1])
-                finishtime.append(finishtime[i-1] + IOtime)
+                finishtime.append(finishtime[i-1] + IOtimearr[i])
                 returntime.append(finishtime[i]+IOwaiting)
                 returnindex.append(i)
                 count=count+1
@@ -120,24 +124,24 @@ elif IO=='odd':
     starttime.append(arrivaltime[0])
 
 
-    if IOtime > quantum and bursttime[0] > quantum:
+    if IOtimearr[0] > quantum and bursttime[0] > quantum:
         starttime.append(arrivaltime[0])
         bursttime[0] = bursttime[0] - quantum
         name.append(name[0])
         bursttime.append(bursttime[0])
         finishtime.append(arrivaltime[0] + quantum)
-        IOtime = IOtime - quantum
+        IOtimearr[0] = IOtimearr[0] - quantum
 
-    elif IOtime > bursttime[0] and bursttime[0] < quantum:
+    elif IOtimearr[0] > bursttime[0] and bursttime[0] < quantum:
         starttime.append(arrivaltime[0])
         finishtime.append(arrivaltime[0] + bursttime[i])
         print("The process ", name[0], " started at ", starttime[0], " and ended at ",
               finishtime[0])
 
-    elif IOtime < bursttime[i] and IOtime < quantum:
+    elif IOtime[0] < bursttime[i] and IOtime[0] < quantum:
         starttime.append(arrivaltime[0])
-        finishtime.append(arrivaltime[0] + IOtime)
-        returntime.append(IOtime + IOwaiting)
+        finishtime.append(arrivaltime[0] + IOtime[0])
+        returntime.append(IOtime[0] + IOwaiting)
         returnindex.append(0)
 
 
@@ -159,24 +163,24 @@ elif IO=='odd':
 
 
         if i==0 or i%2==0:
-            if IOtime>quantum and bursttime[i]>quantum:
+            if IOtime[i]>quantum and bursttime[i]>quantum:
                 starttime.append(finishtime[i-1])
                 bursttime[i ] = bursttime[i ] - quantum
                 name.append(name[i])
                 bursttime.append(bursttime[i])
                 finishtime.append(finishtime[i-1] + quantum)
                 process = process + 1
-                IOtime=IOtime-quantum
+                IOtime[i]=IOtime[i]-quantum
 
-            elif IOtime>bursttime[i] and bursttime[i]<quantum:
+            elif IOtime[i]>bursttime[i] and bursttime[i]<quantum:
                 starttime.append(finishtime[i-1])
                 finishtime.append(finishtime[i-1] + bursttime[i])
                 print("The process ", name[i], " started at ", starttime[i], " and ended at ",
                       finishtime[i])
 
-            elif IOtime<bursttime[i] and IOtime<quantum:
+            elif IOtime[i]<bursttime[i] and IOtime[i]<quantum:
                 starttime.append(finishtime[i-1])
-                finishtime.append(finishtime[i-1] + IOtime)
+                finishtime.append(finishtime[i-1] + IOtime[i])
                 returntime.append(finishtime[i]+IOwaiting)
                 returnindex.append(i)
                 count=count+1
